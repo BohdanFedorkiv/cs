@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Player</title>
+</head>
+<body>
+<form th:method="PATCH" th:action="@{/player/updatePlayer/{id}(id=${player.getId()})}" th:object="${player}">
+    <label for="firstName">Enter player firstname: </label>
+    <input type="text" th:field="*{firstName}" id="firstName" minlength="1" maxlength="32" required/>
+    <br/>
+    <label for="lastName">Enter player lastname: </label>
+    <input type="text" th:field="*{lastName}" id="lastName" minlength="1" maxlength="32" required/>
+    <br/>
+    <label for="experience">Enter experience of the player: </label>
+    <input type="number" th:field="*{experience}" id="experience" min="1" required/>
+    <br/>
+    <label for="age">Enter age of the player: </label>
+    <input type="number" th:field="*{age}" id="age" min="16" max="46" required/>
+    <br/>
+    <br/>
+    <input type="submit" value="Update player"/>
+</form>
+</body>
+</html>

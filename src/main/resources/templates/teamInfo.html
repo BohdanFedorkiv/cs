@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Team Info</title>
+</head>
+<body>
+<ul>
+    <li th:utext="${team.getId()}"></li>
+    <li th:utext="${team.getName()}"></li>
+    <li th:utext="${team.getCountry()}"></li>
+    <li th:utext="${team.getAccount()}"></li>
+    <li>Players: </li>
+    <th:block th:each="p : ${team.getPlayers()}">
+        <ul>
+            <a th:href="@{/player/getPlayer/{id}(id=${p.id})}"><li th:utext="${p.firstName} + ' ' + ${p.lastName}"></li></a>
+        </ul>
+    </th:block>
+</ul>
+<a th:href="@{/team/updateTeam/{id}(id=${team.getId()})}">
+    <p>Edit team</p>
+</a>
+<form th:method="DELETE" th:action="@{/team/deleteTeam/{id}(id=${team.getId()})}">
+    <input type="submit" value="Delete"/>
+</form>
+</body>
+</html>

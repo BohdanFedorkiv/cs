@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Team</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/team/create}" th:object="${team}">
+    <label for="name">Enter team name: </label>
+    <input type="text" th:field="*{name}" id="name" minlength="1" maxlength="32" required/>
+    <br/>
+    <label for="country">Enter team country: </label>
+    <input type="text" th:field="*{country}" id="country" minlength="1" maxlength="32" required/>
+    <br/>
+    <label for="account">Enter amount of money in the account: </label>
+    <input type="number" th:field="*{account}" id="account" min="1000" required/>
+    <br/>
+    <label for="commission">Enter number of commission: </label>
+    <input type="number" th:field="*{commission}" id="commission" min="0" max="10" required/>
+    <br/>
+    <input type="submit" value="Create team"/>
+</form>
+</body>
+</html>

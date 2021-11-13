@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Get All Team</title>
+</head>
+<body>
+<th:block th:each="team : ${teams}">
+    <ul>
+        <a th:href="@{/team/getTeam/{id}(id=${team.getId()})}">
+            <li th:utext="${team.getName()}"></li>
+        </a>
+    </ul>
+</th:block>
+</body>
+</html>

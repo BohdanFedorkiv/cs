@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Player Info</title>
+</head>
+<body>
+<ul>
+    <li th:utext="${player.getId()}"></li>
+    <li th:utext="${player.firstName}"></li>
+    <li th:utext="${player.getLastName()}"></li>
+    <li th:utext="${player.getExperience()}"></li>
+    <li th:utext="${player.getAge()}"></li>
+    <a th:href="@{/team/getTeam/{id}(id=${player.team.getId()})}">
+        <li th:utext="${player.team.getName()}"></li>
+    </a>
+</ul>
+<a th:href="@{/player/updatePlayer/{id}(id=${player.getId()})}">
+    <p>Edit player</p>
+</a>
+<p> Choose team to make transfer </p>
+<th:block th:each="pos : ${possibleTeams}">
+    <ul>
+        <a th:href="@{/player/transfer/{playerId}/{oldTeamId}/{newTeamId}(playerId=${player.getId()}, oldTeamId=${player.getTeam().getId()}, newTeamId=${pos.getId()})}">
+            <li th:utext="${pos.getName()}"></li>
+        </a>
+    </ul>
+</th:block>
+<form th:method="DELETE" th:action="@{/player/deletePlayer/{id}(id=${player.getId()})}">
+    <input type="submit" value="Delete"/>
+</form>
+</body>
+</html>
